@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="myclass">test</div>
+  <br />
+  <div class="row">
+    <div *ngFor="let product of products; let productId = index" class="col-sm">
+      <a [routerLink]="[productId]">
+        <div class="card">
+          <img
+            src="../assets/img/placeholder-695350.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">ここに説明文を入れます.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
