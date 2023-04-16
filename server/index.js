@@ -50,9 +50,9 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || "3001";
 
-//疎通テストのでバックログ用
-// app.listen(PORT, function () {
-//   console.log("Iam running!!!!!");
-// });
+// 疎通テストのでバックログ用
+app.listen(process.env.PORT || 3001, function () {
+  console.log("Iam running!!!!!");
+});
 
 // mongodb+srv://test:<password>@cluster0.fkuao29.mongodb.net/?retryWrites=true&w=majority
