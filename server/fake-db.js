@@ -56,7 +56,7 @@ class FakeDb {
 
   //初期化するメソッド
   // 処理：①cleanDbで初期化
-  // 処理：②DB内にModelよりドキュメントをSaveする
+  // 処理：②DB内にModelからドキュメントをSaveする
   async initDb() {
     await this.cleanDb();
     this.pushProductsToDb();
