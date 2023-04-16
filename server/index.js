@@ -16,7 +16,7 @@ mongoose
   )
   .then(() => {
     //開発DB接続時の設定
-    if (process.env.NODE_ENV !== "produvtion") {
+    if (process.env.NODE_ENV !== "production") {
       //DB接続後の初期処理
       const fakeDb = new FakeDb();
       // fakeDb.initDb();
@@ -40,7 +40,7 @@ app.use("/api/v1/products", productRoutes);
 // });
 
 //本番DB接続時の設定
-if (process.env.NODE_ENV === "produvtion") {
+if (process.env.NODE_ENV === "production") {
   const appPath = path.join(__dirname, "..", "dist", "sample_site");
   app.use(express.static(appPath));
   app.get("*", function (req, res) {
