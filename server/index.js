@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const config = require("./config/dev");
+const config = require("./config/index");
 const FakeDb = require("./fake-db");
 
 const productRoutes = require("./routes/products");
+const path = require("path");
 
 mongoose
   .connect(
@@ -14,11 +15,15 @@ mongoose
     // }
   )
   .then(() => {
-    //DB接続後の初期処理
-    const fakeDb = new FakeDb();
-    fakeDb.initDb();
-    console.log("Connected!");
+    //開発DB接続時の設定
+    if (process.env.NODE_ENV !== "produvtion") {
+      //DB接続後の初期処理
+      const fakeDb = new FakeDb();
+      // fakeDb.initDb();
+      console.log("Connected!");
+    }
   });
+
 // 直書きはせずにdev.jsにエンドポイントを入力する（dev.jsはgitignoreに登録しGitにはあげない。）
 // mongoose
 //   .connect(
@@ -33,6 +38,15 @@ app.use("/api/v1/products", productRoutes);
 // app.get("/products", function (req, res) {
 //   res.json({ success: true });
 // });
+
+//本番DB接続時の設定
+if (process.env.NODE_ENV === "produvtion") {
+  const appPath = path.join(__dirname, "..", "dist", "sample_site");
+  app.use(express.static(appPath));
+  app.get("*", function (req, res) {
+    res.sendFile(path.resolve(appPath, "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || "3001";
 
