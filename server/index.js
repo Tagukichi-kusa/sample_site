@@ -41,7 +41,7 @@ app.use("/api/v1/products", productRoutes);
 
 //本番DB接続時の設定
 if (process.env.NODE_ENV === "production") {
-  const appPath = path.join(__dirname, "..", "dist", "sample_site");
+  const appPath = path.join(__dirname, "..", "dist", "sample-site");
   app.use(express.static(appPath));
   app.get("*", function (req, res) {
     res.sendFile(path.resolve(appPath, "index.html"));
